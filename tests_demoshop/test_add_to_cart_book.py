@@ -4,14 +4,14 @@ import allure
 from tests_demoshop.conftest import DOMAIN_URL, LOGIN, PASSWORD
 
 
-def test_add_to_cart_computer():
+def test_add_to_cart_book():
     with allure.step("Get user cookie"):
         response = requests.post(url=DOMAIN_URL + "login", data={"Email": LOGIN, "Password": PASSWORD},
                                  allow_redirects=False)
         cookie = response.cookies.get("NOPCOMMERCE.AUTH")
 
     with allure.step("Add product to user's cart"):
-        add_to_cart_url = "https://demowebshop.tricentis.com/addproducttocart/details/72/1"
+        add_to_cart_url = "https://demowebshop.tricentis.com/addproducttocart/catalog/13/1/1"
         requests.post(add_to_cart_url, cookies={"NOPCOMMERCE.AUTH": cookie})
 
     with allure.step("Open cart page"):
@@ -20,7 +20,7 @@ def test_add_to_cart_computer():
         browser.open("https://demowebshop.tricentis.com/cart")
 
     with allure.step("Check items in cart"):
-        browser.element('[class="product-name"]').should(have.text('Build your own cheap computer'))
+        browser.element('[class="product-name"]').should(have.text('Computing and Internet'))
 
     with allure.step(''):
         browser.element('[name=removefromcart]').click()
