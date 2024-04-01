@@ -4,3 +4,4 @@ selene~=2.0.0rc9
 logging
 requests
 curlify
+python-dotenv~=1.0.1

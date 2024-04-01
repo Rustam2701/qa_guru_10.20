@@ -4,10 +4,12 @@ import requests
 import allure
 from curlify import to_curl
 
+from tests_demoshop.conftest import DOMAIN_URL
+
 
 def post_demowebshop(url, **kwargs):
     with allure.step(f"POST {url}"):
-        response = requests.post(url=url, **kwargs)
+        response = requests.post(url=DOMAIN_URL, **kwargs)
         curl = to_curl(response.request)
         logging.debug(to_curl(response.request))
         logging.info(f'status code: {response.status_code}')
@@ -19,7 +21,7 @@ def post_demowebshop(url, **kwargs):
 
 def get_demowebshop(url, **kwargs):
     with allure.step(f"GET {url}"):
-        response = requests.get(url=url, **kwargs)
+        response = requests.get(url=DOMAIN_URL, **kwargs)
         curl = to_curl(response.request)
         logging.info(to_curl(response.request))
         logging.info(f'status code: {response.status_code}')
