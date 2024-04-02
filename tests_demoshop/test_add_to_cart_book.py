@@ -22,11 +22,11 @@ def test_add_to_cart_book():
         browser.open("https://demowebshop.tricentis.com/cart")
 
     with allure.step("Check items in cart"):
-        browser.element('[class="product-name"]').should(have.text('Computing and Internet'))
+        browser.element('.product-name').should(have.text('Computing and Internet'))
 
     with allure.step('Delete items'):
         browser.element('[name=removefromcart]').click()
         browser.element('[name=updatecart]').click()
 
     with allure.step('Check empty cart'):
-        browser.element('[class=order-summary-content]').should(have.text('Your Shopping Cart is empty!'))
+        browser.element('.order-summary-content').should(have.text('Your Shopping Cart is empty!'))

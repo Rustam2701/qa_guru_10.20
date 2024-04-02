@@ -1,7 +1,7 @@
 import requests
 from selene import browser, have
 import allure
-from tests_demoshop.conftest import DOMAIN_URL, LOGIN, PASSWORD
+from tests_demoshop.conftest import LOGIN, PASSWORD
 from utils.utils import post_demowebshop
 
 
@@ -22,11 +22,11 @@ def test_add_to_cart_laptop():
         browser.open("https://demowebshop.tricentis.com/cart")
 
     with allure.step("Check items in cart"):
-        browser.element('[class=product-name]').should(have.text('14.1-inch Laptop'))
+        browser.element('.product-name').should(have.text('14.1-inch Laptop'))
 
     with allure.step('Delete items'):
         browser.element('[name=removefromcart]').click()
         browser.element('[name=updatecart]').click()
 
     with allure.step('Check empty cart'):
-        browser.element('[class=order-summary-content]').should(have.text('Your Shopping Cart is empty!'))
+        browser.element('.order-summary-content').should(have.text('Your Shopping Cart is empty!'))
